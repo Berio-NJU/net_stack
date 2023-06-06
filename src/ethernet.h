@@ -10,12 +10,5 @@ struct eth_hdr
     uint8_t  payload[];
 };
 
-// 以太网帧是放在skb结构中的,
-static inline struct eth_hdr *eth_hdr(struct sk_buff *skb)
-{
-    struct eth_hdr *hdr = (struct eth_hdr *)skb_head(skb);
-    // 把网络字节顺序转换成主机字节顺序
-    hdr->ethertype = ntohs(hdr->ethertype);
 
-    return hdr;
-}
+struct eth_hdr *eth_send(uint8_t smac[6],uint8_t dmac[6],uint16_t ethertype,uint8_t data[],uint16_t len);

@@ -1,9 +1,14 @@
 #include "syshead.h"
 #include "ethernet.h"
 
-#define IP_HDR_LEN sizeof(struct iphdr)
+#define IP_HDR_LEN sizeof(struct ip_hdr)
 
-struct iphdr {
+#define IPV4 0x04
+#define ICMPV4 0x01
+#define IP_TCP 0x06
+#define IP_UDP 0x11
+
+struct ip_hdr {
     // TODO: 支持大端主机 
     uint8_t ihl : 4; // 长度字段ihl同样是4位长度，它表示IP标头中32位字的数量。由于该字段的大小为4位，因此只能保留最大值15。因此，IP标头的最大长度为60个八位位组 
     uint8_t version : 4; // ip版本
@@ -19,8 +24,6 @@ struct iphdr {
     uint8_t data[];
 };
 
-// 从skbuff中取出ip协议的数据
-static inline struct iphdr *ip_hdr(const struct sk_buff *skb)
-{
-    return (struct iphdr *)(skb->head + ETH_HDR_LEN);
-}
+
+struct ip_hdr *ip_send(struct sock *sk,uint8_t data[],uint16_t len);
+void ip_send_check(struct ip_hdr *ihdr);
