@@ -7,6 +7,9 @@
 
 #define BUFLEN 1600
 #define MAX_ADDR_LEN 32
+#define ETH_P_ARP   0x0806
+#define ETH_P_IP    0x0800
+#define ETH_P_IPV6  0x86DD
 
 #define netdev_dbg(fmt, args...)                \
     do {                                        \
