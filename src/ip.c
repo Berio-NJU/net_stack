@@ -33,9 +33,10 @@ struct ip_hdr *ip_send(struct sock *sk,uint8_t data[],uint16_t len){
 
     return ihdr;
 }
-// TODO 字节流转换成ip报文
+// 字节流转换成ip报文
 struct ip_hdr *ip_rcv(uint8_t *data){
-
+    struct ip_hdr* hdr =(struct ip_hdr *) data;
+    return hdr;
 }
 
 // ip头校验

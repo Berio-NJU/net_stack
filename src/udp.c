@@ -18,9 +18,10 @@ struct udp_hdr *udp_send(struct sock *sk,uint8_t data[],uint16_t len){
 
 
 
-// TODO 字节流转换成udp报文
+// 字节流转换成udp报文
 struct udp_hdr *udp_rcv(uint8_t *data){
-    return NULL;
+    struct udp_hdr* hdr =(struct udp_hdr *) data;
+    return hdr;
 }
 
 // tcp_udp校验
